@@ -13,9 +13,8 @@ Tech Stack
 * Github 
 
 Cloud Resume Architecture 
+![AWS Cloud Resume Challenge Diagram](https://github.com/aceesay94/aws-cloud-resume-challenge/assets/160535936/4824e4f3-9f86-4986-b2a3-00c31d7b549d)
 
 
-
-## Screenshots
 
 
