@@ -13,3 +13,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
           source_dir: 'Resume Design'
+    args: "--acl public-read --delete s3://cloud-resume-challenge-aceesay"
