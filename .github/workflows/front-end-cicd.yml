@@ -6,7 +6,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - uses: shallwefootball/upload-s3-action@v1.3.3
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
