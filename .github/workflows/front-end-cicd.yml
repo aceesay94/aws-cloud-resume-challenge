@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Assume IAM Role
         run: |
-          aws sts assume-role --role-arn arn:aws:iam::873866910440:role/service-role/cloudresume-test-api-role-2z7ol5a6::873866910440:role/cloudresume-test-api-role-2z7ol5a6 --role-session-name "GitHubActionsSession" > assume-role-output.json
+          aws sts assume-role --role-arn arn:aws:iam::873866910440:role/service-role/cloudresume-test-api-role-2z7ol5a6::873866910440:role/cloudresume-test-api-role-2z7ol5a6 --role-session-name "GitHubActionsSession" --duration seconds 18000> assume-role-output.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
