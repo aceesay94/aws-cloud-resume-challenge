@@ -9,24 +9,20 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Assume IAM Role
+        run: |
+          aws sts assume-role --role-arn arn:aws:iam::873866910440:role/service-role/cloudresume-test-api-role-2z7ol5a6::873866910440:role/cloudresume-test-api-role-2z7ol5a6 --role-session-name "GitHubActionsSession" > assume-role-output.json
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1  # Replace with your AWS region
 
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Replace with your AWS region
-
-      - name: Verify AWS CLI
-        run: aws --version  # Check AWS CLI version
-        continue-on-error: true  # Continue even if this step fails
-
-      - name: List AWS configuration
-        run: aws configure list  # List AWS configuration
-        continue-on-error: true  # Continue even if this step fails
+      - name: Set AWS Credentials from Assume Role Output
+        run: |
+          export AWS_ACCESS_KEY_ID=$(cat assume-role-output.json | jq -r '.Credentials.AccessKeyId')
+          export AWS_SECRET_ACCESS_KEY=$(cat assume-role-output.json | jq -r '.Credentials.SecretAccessKey')
+          export AWS_SESSION_TOKEN=$(cat assume-role-output.json | jq -r '.Credentials.SessionToken')
 
       - name: Upload to S3
         run: |
-          aws s3 cp /Users/BCeesay/Downloads/cloud-resume-challenge s3://cloud-resume-challenge-aceesay/path/to/destination
+          aws s3 cp /home/BCeesay/Downloads/cloud-resume-challenge s3://cloud-resume-challenge/
