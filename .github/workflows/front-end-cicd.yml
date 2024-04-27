@@ -9,13 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2  # Update to use v2 of actions/checkout
+      - uses: actions/checkout@v3
       - name: Sync files with S3
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
-          args: --acl public-read --follow-symlinks --delete
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'us-east-1'  # optional: defaults to us-east-1
-          source: 'Resume Design'  # optional: defaults to entire repository
-          dest: 's3://cloud-resume-challenge-aceesay/Resume_Design'
+          args: --acl public-read --follow-symlinks --delete s3://cloud-resume-challenge-aceesay/Resume_Design source/
