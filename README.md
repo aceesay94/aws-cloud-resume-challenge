@@ -10,10 +10,13 @@ Tech Stack
 * Certificate Manager
 * Lambda
 * DynamoDB
-* Github 
+* Github
+* Terraform
+* API Gateway
 
 Cloud Resume Architecture 
-![AWS Cloud Resume Challenge Diagram](https://github.com/aceesay94/aws-cloud-resume-challenge/assets/160535936/4824e4f3-9f86-4986-b2a3-00c31d7b549d)
+![AWS Cloud Resume Challenge Diagram]![AWS Cloud Resume Challenge Diagram (1)](https://github.com/aceesay94/aws-cloud-resume-challenge/assets/160535936/e84aed2c-5efe-4e4e-a853-9a0f326a298e)
+
 
 
 
